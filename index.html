@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Your Picture</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; }
+    input, button { font-size: 1.2em; padding: 10px; margin: 10px; }
+    img { max-width: 90%; margin-top: 20px; border-radius: 10px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+
+  <h1>Enter Your Code to View Your Picture</h1>
+  <input type="number" id="codeInput" placeholder="Enter your code (e.g. 123)">
+  <button onclick="loadImage()">Show Image</button>
+
+  <div id="imageResult"></div>
+
+  <script>
+    // This is just a small example. You will replace with real full list.
+    const imageMap = {
+      "1": "1AbCDeFgHiJKlMnOP",  // Replace with real file IDs
+      "2": "2XYZaBcDEfGhIjKLm",
+      "3": "3QWeRtYuIoPaSdfGh"
+    };
+
+    function loadImage() {
+      const code = document.getElementById('codeInput').value.trim();
+      const fileId = imageMap[code];
+
+      const container = document.getElementById('imageResult');
+      if (!fileId) {
+        container.innerHTML = "<p style='color:red;'>Image not found for this code.</p>";
+        return;
+      }
+
+      const imageUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
+      container.innerHTML = `<img src="${imageUrl}" alt="Your Image">`;
+    }
+  </script>
+
+</body>
+</html>
